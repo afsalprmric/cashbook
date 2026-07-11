@@ -1,0 +1,98 @@
+.reports-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filter-panel {
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+}
+
+.filter-header {
+  margin-bottom: 1.5rem;
+}
+
+.filter-header h3 {
+  font-size: 1.125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .filter-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+.download-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 1.5rem;
+}
+
+.preview-panel {
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.preview-table th,
+.preview-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.preview-table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.preview-table td {
+  font-size: 0.95rem;
+}
+
+.type-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.type-badge.income {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--success);
+}
+
+.type-badge.expense {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--error);
+}
+
+.amount-cell {
+  font-family: monospace;
+  font-weight: 600;
+}

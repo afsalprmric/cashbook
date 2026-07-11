@@ -1,0 +1,188 @@
+.credit-cards-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tabs-container {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid var(--card-border);
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all var(--transition-fast);
+}
+
+.tab-btn:hover {
+  color: var(--primary-600);
+}
+
+.tab-btn.active {
+  color: var(--primary-600);
+  border-bottom-color: var(--primary-600);
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.credit-card-item {
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.credit-card-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.bank-name {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.limit-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.limit-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.progress-bar-container {
+  height: 8px;
+  background-color: var(--surface-hover);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background-color: var(--primary-500);
+  transition: width 0.3s ease;
+}
+
+.progress-fill.high-utilization {
+  background-color: var(--warning);
+}
+
+.progress-fill.max-utilization {
+  background-color: var(--error);
+}
+
+.dates-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-top: auto;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.emi-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.emi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emi-item-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.emi-amount {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-600);
+}
+
+.emi-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.emi-months {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.emi-progress-bar {
+  height: 6px;
+  background-color: var(--surface-hover);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.emi-progress-fill {
+  height: 100%;
+  background-color: var(--success);
+  transition: width 0.3s ease;
+}
+
+.update-outstanding-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.update-outstanding-form input {
+  flex: 1;
+}

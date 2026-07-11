@@ -1,0 +1,189 @@
+.loans-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.loan-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .loan-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+.loan-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.loan-payee {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.loan-meta {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.loan-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: monospace;
+}
+
+.loan-amount.lent {
+  color: var(--error);
+}
+
+.loan-amount.borrowed {
+  color: var(--success);
+}
+
+.loan-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+}
+
+.status-badge:hover {
+  filter: brightness(0.9);
+}
+
+.status-badge.pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--warning);
+}
+
+.status-badge.settled {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--success);
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.btn-whatsapp:hover {
+  opacity: 0.9;
+}
+
+.loan-progress-container {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.loan-progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--glass-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.loan-progress-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  background-color: #3b82f6;
+}
+
+.loan-progress-fill.settled {
+  background-color: var(--success);
+}
+
+.loan-progress-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.repayment-history {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--glass-border);
+}
+
+.repayment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.4rem 0;
+}
+
+.repayment-item .date {
+  color: var(--text-secondary);
+  width: 90px;
+  font-size: 0.8rem;
+}
+
+.repayment-item .note {
+  flex: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.repayment-item .amount {
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.repayment-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.repayment-form input {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+}
