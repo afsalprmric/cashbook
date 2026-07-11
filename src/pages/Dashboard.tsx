@@ -1,7 +1,8 @@
 import { useMemo, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '../db/database';
-import { FiTrendingUp, FiTrendingDown, FiDollarSign, FiUploadCloud, FiLogOut, FiRefreshCw, FiCheck, FiAlertCircle } from 'react-icons/fi';
+import { FiTrendingUp, FiTrendingDown, FiDollarSign, FiUploadCloud, FiLogOut, FiRefreshCw, FiCheck, FiAlertCircle, FiHeart } from 'react-icons/fi';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { startOfMonth, endOfMonth, isWithinInterval, startOfYear, endOfYear, format, parseISO } from 'date-fns';
 import { GoogleSyncService } from '../services/googleSync';
@@ -193,6 +194,20 @@ const Dashboard = () => {
         </div>
       </div>
       
+      {/* PassionLedger AI Promo Banner */}
+      <div className="glass-panel d-flex justify-between align-center mb-4 flex-wrap gap-3 animate-fade-in" style={{ padding: '1.2rem 1.8rem', background: 'linear-gradient(135deg, rgba(15, 118, 110, 0.1) 0%, rgba(13, 148, 136, 0.02) 100%)', border: '1px solid rgba(15, 118, 110, 0.25)', borderLeft: '5px solid #0f766e' }}>
+        <div>
+          <h4 style={{ margin: '0 0 0.2rem 0', fontWeight: '800', fontSize: '1.1rem' }}>✨ Turn Everyday Spending into Your Dream Goal</h4>
+          <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            Most cashbooks explain where money went. PassionLedger AI explains how available money can responsibly fund something meaningful.
+          </p>
+        </div>
+        <Link to="/passion" className="btn-primary d-flex align-center gap-1" style={{ padding: '0.5rem 1.2rem', textDecoration: 'none', fontSize: '0.85rem' }}>
+          <FiHeart />
+          <span>Launch Passion AI</span>
+        </Link>
+      </div>
+
       <div className="summary-cards">
         <div className="card glass-panel wallet-card">
           <div className="wallet-header">

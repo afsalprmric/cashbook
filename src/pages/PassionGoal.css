@@ -1,0 +1,110 @@
+/* PassionLedger AI Page and Components Styles */
+
+.passion-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* Hero Landing Section */
+.passion-hero {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.beat-animation {
+  animation: heart-beat 1.5s infinite ease-in-out;
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.pulse-animation {
+  animation: pulse-effect 2s infinite ease-in-out;
+}
+
+@keyframes pulse-effect {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Metrics Grid Layout */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.metric-card {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.highlight-border {
+  border: 1.5px solid #0f766e !important;
+}
+
+/* Form Styles */
+.passion-form-container {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.tag-btn {
+  transition: all 0.2s;
+}
+
+.tag-btn:hover {
+  border-color: #0f766e !important;
+  background-color: rgba(15, 118, 110, 0.05) !important;
+}
+
+/* Spinner and Loaders */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Milestones and timelines */
+.milestones-timeline {
+  position: relative;
+}
+
+/* Responsive constraints */
+@media (max-width: 768px) {
+  .passion-page-container {
+    padding: 0.8rem;
+    margin-bottom: 5rem; /* Space for bottom navigation on mobile */
+  }
+
+  .passion-hero h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .passion-hero p {
+    font-size: 0.95rem !important;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
