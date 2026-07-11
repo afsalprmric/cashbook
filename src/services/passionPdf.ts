@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import type { PassionGoal, PassionMetrics, PassionPlan } from '../types/passion';
 import { formatCurrency } from './financeCalculator';
 
@@ -39,16 +39,16 @@ export function downloadPassionPlanPDF(goal: PassionGoal, metrics: PassionMetric
   
   const startYOfTable = 44 + splitReason.length * 5 + 2;
   
-  (doc as any).autoTable({
+  autoTable(doc, {
     body: metricsData,
     startY: startYOfTable,
     theme: 'plain',
     styles: { fontSize: 9, cellPadding: 2 },
     columnStyles: {
-      0: { fontStyle: 'bold', width: 40 },
-      1: { width: 50 },
-      2: { fontStyle: 'bold', width: 40 },
-      3: { width: 50 }
+      0: { fontStyle: 'bold', cellWidth: 40 },
+      1: { cellWidth: 50 },
+      2: { fontStyle: 'bold', cellWidth: 40 },
+      3: { cellWidth: 50 }
     }
   });
   
@@ -88,7 +88,7 @@ export function downloadPassionPlanPDF(goal: PassionGoal, metrics: PassionMetric
     formatCurrency(s.estimatedMonthlyImpact)
   ]);
   
-  (doc as any).autoTable({
+  autoTable(doc, {
     head: suggestionHeaders,
     body: suggestionRows,
     startY: currentY,
@@ -96,10 +96,10 @@ export function downloadPassionPlanPDF(goal: PassionGoal, metrics: PassionMetric
     styles: { fontSize: 8, font: 'helvetica' },
     headStyles: { fillColor: [15, 118, 110] },
     columnStyles: {
-      0: { fontStyle: 'bold', width: 45 },
-      1: { width: 30 },
-      2: { width: 85 },
-      3: { halign: 'right', width: 22 }
+      0: { fontStyle: 'bold', cellWidth: 45 },
+      1: { cellWidth: 30 },
+      2: { cellWidth: 85 },
+      3: { halign: 'right', cellWidth: 22 }
     }
   });
   
@@ -124,7 +124,7 @@ export function downloadPassionPlanPDF(goal: PassionGoal, metrics: PassionMetric
     m.estimatedDate || 'N/A'
   ]);
   
-  (doc as any).autoTable({
+  autoTable(doc, {
     head: milestoneCols,
     body: milestoneRows,
     startY: currentY,
