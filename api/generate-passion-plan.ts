@@ -103,7 +103,7 @@ export default async function handler(req: any, res: any) {
   try {
     const parseResult = PassionPlanRequestSchema.safeParse(req.body);
     if (!parseResult.success) {
-      return res.status(400).json({ error: 'Invalid Request Body', details: parseResult.error.errors });
+      return res.status(400).json({ error: 'Invalid Request Body', details: parseResult.error.issues });
     }
 
     const { goal, financialSummary, verifiedMetrics } = parseResult.data;
