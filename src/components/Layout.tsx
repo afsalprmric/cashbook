@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Outlet, NavLink, useLocation } from 'react-router-dom';
-import { FiHome, FiList, FiPieChart, FiSettings, FiMenu, FiX, FiTag, FiBriefcase, FiTrendingUp, FiCreditCard, FiCheckSquare, FiPlus } from 'react-icons/fi';
+import { FiHome, FiList, FiPieChart, FiSettings, FiMenu, FiX, FiTag, FiBriefcase, FiTrendingUp, FiCreditCard, FiCheckSquare, FiPlus, FiHeart } from 'react-icons/fi';
 import TransactionModal from './TransactionModal';
 import './Layout.css';
 
@@ -21,6 +21,7 @@ const Layout = () => {
 
   const allLinks = [
     { to: "/", icon: <FiHome />, label: "Dashboard" },
+    { to: "/passion", icon: <FiHeart />, label: "Passion AI" },
     { to: "/transactions", icon: <FiList />, label: "Cashflow" },
     { to: "/loans", icon: <FiBriefcase />, label: "Liabilities" },
     { to: "/credit-cards", icon: <FiCreditCard />, label: "Cards & EMIs" },

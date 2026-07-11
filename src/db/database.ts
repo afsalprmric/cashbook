@@ -1,4 +1,5 @@
 import Dexie, { type Table } from 'dexie';
+import type { PassionGoal } from '../types/passion';
 
 export interface Transaction {
   id?: string;
@@ -112,6 +113,7 @@ export class CashbookDB extends Dexie {
   investments!: Table<Investment, string>;
   creditCards!: Table<CreditCard, string>;
   emis!: Table<EMI, string>;
+  passionGoals!: Table<PassionGoal, string>;
 
   constructor() {
     super('CashbookDatabase');
@@ -168,6 +170,19 @@ export class CashbookDB extends Dexie {
       investments: 'id, type, status, startDate',
       creditCards: 'id, name, bankName, createdAt',
       emis: 'id, status, startDate, linkedCardId, createdAt'
+    });
+
+    // Version 7: Add passionGoals table for PassionLedger AI
+    this.version(7).stores({
+      transactions: 'id, type, categoryId, date, paymentModeId',
+      categories: 'id, name, type',
+      paymentModes: 'id, name',
+      loans: 'id, type, status, date',
+      funds: 'id, type, name',
+      investments: 'id, type, status, startDate',
+      creditCards: 'id, name, bankName, createdAt',
+      emis: 'id, status, startDate, linkedCardId, createdAt',
+      passionGoals: 'id, name, desiredDate, createdAt, updatedAt'
     });
   }
 }

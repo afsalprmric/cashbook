@@ -10,6 +10,7 @@ import Loans from './pages/Loans';
 import BankClear from './pages/BankClear';
 import Investments from './pages/Investments';
 import CreditCards from './pages/CreditCards';
+import PassionGoal from './pages/PassionGoal';
 import { seedDatabase } from './db/database';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
+          <Route path="passion" element={<PassionGoal />} />
           <Route path="transactions" element={<Transactions />} />
           <Route path="categories" element={<Categories />} />
           <Route path="loans" element={<Loans />} />
