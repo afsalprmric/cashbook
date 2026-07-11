@@ -8,6 +8,26 @@ This project is built as a competition-ready experience for the **DEV Weekend Ch
 
 ---
 
+## Live Demo
+
+👉 **Live Demo URL**: [https://cashbook-snowy.vercel.app/](https://cashbook-snowy.vercel.app/)
+
+For the fastest experience:
+1. Navigate to the live demo app.
+2. Select **Passion AI** from the navigation sidebar.
+3. Click **“Try the 60-Second Demo”** to instantly load the pre-calculated Home Recording Studio scenario.
+
+### Walkthrough & Assets
+*   **Demo Video**: [60-Second Demo Walkthrough Video](https://cashbook-snowy.vercel.app/)
+*   **Screenshots**:
+    *   *Hero Landing Page*: ![Hero Page](docs/screenshots/hero.png)
+    *   *Goal Dashboard*: ![Goal Dashboard](docs/screenshots/dashboard.png)
+    *   *What-If Simulator*: ![What-If Simulator](docs/screenshots/simulator.png)
+    *   *Gemini AI Plan*: ![Gemini AI Plan](docs/screenshots/gemini_plan.png)
+    *   *Runway Savings Curve*: ![Runway Chart](docs/screenshots/runway.png)
+
+---
+
 ## 1. Architecture Flow
 
 ```mermaid
