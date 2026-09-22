@@ -11,6 +11,7 @@ import BankClear from './pages/BankClear';
 import Investments from './pages/Investments';
 import CreditCards from './pages/CreditCards';
 import PassionGoal from './pages/PassionGoal';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import { seedDatabase } from './db/database';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="credit-cards" element={<CreditCards />} />
           <Route path="reports" element={<Reports />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
