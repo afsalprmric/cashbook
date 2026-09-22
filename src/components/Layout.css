@@ -120,6 +120,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
+  background: var(--surface-color);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -244,6 +245,10 @@
     position: sticky;
     transform: translateX(0);
     border-right: 1px solid var(--glass-border);
+  }
+  
+  .topbar {
+    display: none;
   }
   
   .d-md-none {

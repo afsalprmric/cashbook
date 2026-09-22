@@ -9,21 +9,37 @@ const Settings = () => {
   const [autoSyncStatus, setAutoSyncStatus] = useState(GoogleSyncService.autoSyncStatus);
   
   // Google Configuration State
-  const HARDCODED_CLIENT_ID = "123616126355-7ujtrhe67gri4544dh1us8c5vgdi1stf.apps.googleusercontent.com";
+  const DEFAULT_CLIENT_ID = (import.meta.env.VITE_GOOGLE_CLIENT_ID as string) || "123616126355-7ujtrhe67gri4544dh1us8c5vgdi1stf.apps.googleusercontent.com";
+  const [clientId, setClientId] = useState<string>(localStorage.getItem('cashbook_google_client_id') || DEFAULT_CLIENT_ID);
+  const [showClientIdInput, setShowClientIdInput] = useState<boolean>(false);
   const [isGoogleLoggedIn, setIsGoogleLoggedIn] = useState<boolean>(GoogleSyncService.isLoggedIn());
   const lastSync = localStorage.getItem('cashbook_last_sync');
   const lastSyncLabel = lastSync ? new Date(parseInt(lastSync)).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' }) : 'Never';
 
   useEffect(() => {
-    GoogleSyncService.initializeGapi(HARDCODED_CLIENT_ID).catch(e => console.error("Google Init Error:", e));
+    const activeClientId = localStorage.getItem('cashbook_google_client_id') || DEFAULT_CLIENT_ID;
+    GoogleSyncService.initializeGapi(activeClientId).catch(e => console.error("Google Init Error:", e));
     // Subscribe to auto-sync status changes
     GoogleSyncService.onStatusChange = () => setAutoSyncStatus(GoogleSyncService.autoSyncStatus);
     return () => { GoogleSyncService.onStatusChange = null; };
   }, []);
 
+  const handleSaveClientId = (newId: string) => {
+    const trimmed = newId.trim();
+    setClientId(trimmed);
+    if (trimmed) {
+      localStorage.setItem('cashbook_google_client_id', trimmed);
+    } else {
+      localStorage.removeItem('cashbook_google_client_id');
+    }
+    GoogleSyncService.initializeGapi(trimmed || DEFAULT_CLIENT_ID).catch(e => console.error("Google Re-init Error:", e));
+  };
+
   const handleGoogleLogin = async () => {
     try {
-      setSyncStatus("Waiting for Google Authorization...");
+      setSyncStatus("Waiting for Google Authorization popup...");
+      const activeId = clientId || DEFAULT_CLIENT_ID;
+      await GoogleSyncService.initializeGapi(activeId);
       await GoogleSyncService.authenticate();
       setIsGoogleLoggedIn(true);
       
@@ -33,9 +49,11 @@ const Settings = () => {
       
       setSyncStatus("Successfully linked & synced with Google Drive!");
     } catch (e: any) {
-      setSyncStatus(`Authentication Failed: ${e}`);
+      console.error("Google login failed:", e);
+      const errStr = typeof e === 'object' ? (e.error || e.message || JSON.stringify(e)) : String(e);
+      setSyncStatus(`Auth Failed: ${errStr}. Ensure popups are allowed and authorized origin matches.`);
     }
-    setTimeout(() => setSyncStatus(''), 4000);
+    setTimeout(() => setSyncStatus(''), 8000);
   };
 
   const handleGoogleLogout = () => {
@@ -200,7 +218,7 @@ const Settings = () => {
             </div>
           )}
 
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
             {!isGoogleLoggedIn ? (
               <button className="btn-primary d-flex align-center gap-2" onClick={handleGoogleLogin}>
                 <FiUploadCloud /> Sign In with Google
@@ -210,7 +228,45 @@ const Settings = () => {
                 <FiLogOut /> Disconnect
               </button>
             )}
+
+            <button 
+              className="btn-secondary text-secondary" 
+              style={{ fontSize: '0.85rem', padding: '0.5rem 0.8rem' }}
+              onClick={() => setShowClientIdInput(!showClientIdInput)}
+            >
+              {showClientIdInput ? 'Hide OAuth Settings' : 'Configure Google Client ID'}
+            </button>
           </div>
+
+          {showClientIdInput && (
+            <div className="mt-4 p-3 rounded" style={{ background: 'var(--surface-hover)', borderRadius: 'var(--radius-md)' }}>
+              <label style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block', marginBottom: '0.4rem' }}>
+                Custom Google OAuth Client ID
+              </label>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <input
+                  type="text"
+                  className="form-input"
+                  style={{ flex: 1, padding: '0.5rem 0.75rem', fontSize: '0.85rem', borderRadius: 'var(--radius-sm)' }}
+                  placeholder="Paste your .apps.googleusercontent.com Client ID"
+                  value={clientId}
+                  onChange={(e) => handleSaveClientId(e.target.value)}
+                />
+                {clientId !== DEFAULT_CLIENT_ID && (
+                  <button 
+                    className="btn-secondary"
+                    style={{ fontSize: '0.8rem', padding: '0.5rem 0.75rem' }}
+                    onClick={() => handleSaveClientId('')}
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.4rem', margin: 0 }}>
+                Created in Google Cloud Console &gt; Credentials &gt; OAuth 2.0 Client IDs.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Local Backup / CSV Container */}
